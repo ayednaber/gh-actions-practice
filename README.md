@@ -33,3 +33,25 @@ Then we will specify the steps.
 
 We have simple unit tests for this React application, in which in a real scenario, we would want to run this using a workflow.
 
+```yml
+name: Test Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependecies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+```
+
+For the above *on* keyword, we have various triggers such as repository-related (push, pull_request, and so on), or dispatch events.
+\\
+We are then getting the code from the repo, installing NodeJS, installing dependencies, and then executing the `npm test` command.
