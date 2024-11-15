@@ -10,6 +10,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Move to project directory
+        run: cd second-app-react
       - name: Install dependecies
         run: npm install
       - name: Run tests
