@@ -28,3 +28,8 @@ Then we will specify the steps.
 
 **Result:**
 ![Result of running first workflow](img/first-workflow.png)
+
+## Second Workflow (Running tests for React app)
+
+We have simple unit tests for this React application, in which in a real scenario, we would want to run this using a workflow.
+
