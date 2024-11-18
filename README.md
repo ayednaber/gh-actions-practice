@@ -70,3 +70,21 @@ This can be done by adding specific keywords to your commit message.
 For example, a commit message can look like this: `added comments [skip ci]`.
 
 This commit message will cause no new workflows to be started.
+
+## Job Artifacts
+Job artifacts are output assets (ex: app binary, website files, etc.) which are produced by the job.
+These assets can be downloaded and used manually using GitHub UI or REST API, or be downloaded and used in other jobs **using Actions**.
+
+For example, in our practice-react-app, when we run `npm run build`, we get files in the `dist` folder.
+
+We can use these files that are generated here further to do other tasks, such as upload them on a server where we are hosting the website.
+
+We do that by adding an **Upload Artifacts** step like so:
+
+```yml
+- name: Upload artifacts
+  uses: actions/upload-artifact@v3
+  with:
+    name: dist-files
+    path: ./practice-react-app/dist
+```
