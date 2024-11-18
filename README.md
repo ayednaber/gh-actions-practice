@@ -88,3 +88,14 @@ We do that by adding an **Upload Artifacts** step like so:
     name: dist-files
     path: ./practice-react-app/dist
 ```
+
+The same way we are uploading, we can also download artifacts
+
+```yml
+- name: Get build artifacts
+  uses: actions/download-artifact@v3
+  with:
+    name: dist-files
+- name: Output contents
+  run: ls
+```
