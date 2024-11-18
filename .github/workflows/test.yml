@@ -12,6 +12,10 @@ jobs:
           node-version: 18
       - name: Move to project directory
         run: cd second-app-react
+      - name: Log current directory
+        run: pwd
+      - name: Log current directory contents
+        run: ls
       - name: Install dependecies
         run: npm install
       - name: Run tests
