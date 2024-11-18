@@ -1,0 +1,35 @@
+name: Deploy Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependecies
+        run: npm install
+        working-directory: ./second-app-react
+      - name: Run tests
+        run: npm test
+        working-directory: ./second-app-react
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependecies
+        run: npm install
+        working-directory: ./second-app-react
+      - name: Build project
+        run: npm run build
+        working-directory: ./second-app-react
+      - name: Deploy
+        run: echo "Deploying project"
