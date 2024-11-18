@@ -5,11 +5,11 @@ on:
       - opened
   workflow_dispatch:
 jobs:
-    lint:
+    deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Output event data
-              run: echo ${{ toJson(github.event) }}
+              run: echo "${{ toJson(github.event) }}"
             - name: Get code
               uses: actions/checkout@v3
             - name: Install NodeJS
