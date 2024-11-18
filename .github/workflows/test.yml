@@ -10,12 +10,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Move to project directory
-        run: cd second-app-react
       - name: Log current directory
         run: pwd
       - name: Log current directory contents
         run: ls
+      - name: Move to project directory
+        run: cd second-app-react
       - name: Install dependecies
         run: npm install
       - name: Run tests
