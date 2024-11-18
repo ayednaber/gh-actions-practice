@@ -1,0 +1,30 @@
+name: Events Demo 1
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Output event data
+              run: echo ${{ toJson(github.event) }}
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Install NodeJS
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+            - name: Install dependencies
+              run: npm ci
+              working-directory: ./practice-react-app
+            - name: Test code
+              run: npm run test
+              working-directory: ./practice-react-app
+            - name: Build code
+              run: npm run build
+              working-directory: ./practice-react-app
+            - name: Deploy code
+              run: echo "Deploying code"
+              working-directory: ./practice-react-app
