@@ -59,3 +59,7 @@ We are then getting the code from the repo, installing NodeJS, installing depend
 We can have **multiple jobs** in the same workflow, as shown in *deployment.yml*.
 
 By default, jobs run in parallel, but if we want them to run sequentially, we have to add the **needs** keyword.
+
+We can see the sequential execution visually:
+
+![Sequential workflow](img/sequential.png)
