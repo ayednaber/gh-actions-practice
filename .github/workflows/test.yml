@@ -14,9 +14,9 @@ jobs:
         run: pwd
       - name: Log current directory contents
         run: ls
-      - name: Move to project directory
-        run: cd second-app-react
       - name: Install dependecies
         run: npm install
+        working-directory: ./second-app-react
       - name: Run tests
         run: npm test
+        working-directory: ./second-app-react
