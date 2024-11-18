@@ -17,6 +17,7 @@ jobs:
         run: npm test
         working-directory: ./second-app-react
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code

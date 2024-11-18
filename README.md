@@ -55,3 +55,7 @@ jobs:
 For the above *on* keyword, we have various triggers such as repository-related (push, pull_request, and so on), or dispatch events.
 \\
 We are then getting the code from the repo, installing NodeJS, installing dependencies, and then executing the `npm test` command.
+
+We can have **multiple jobs** in the same workflow, as shown in *deployment.yml*.
+
+By default, jobs run in parallel, but if we want them to run sequentially, we have to add the **needs** keyword.
