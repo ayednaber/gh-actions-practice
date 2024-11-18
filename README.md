@@ -63,3 +63,10 @@ By default, jobs run in parallel, but if we want them to run sequentially, we ha
 We can see the sequential execution visually:
 
 ![Sequential workflow](img/sequential.png)
+
+## Skipping Workflows
+This can be done by adding specific keywords to your commit message.
+
+For example, a commit message can look like this: `added comments [skip ci]`.
+
+This commit message will cause no new workflows to be started.
