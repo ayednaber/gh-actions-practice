@@ -1,0 +1,52 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:vitest/recommended",
+      "plugin:import/recommended",
+      "plugin:import/typescript",
+      "plugin:jsx-a11y/recommended",
+      "prettier"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "babelOptions": {
+        "presets": ["@babel/preset-react"]
+      }
+    },
+    "plugins": ["react", "react-hooks", "vitest", "import", "jsx-a11y"],
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "no-unused-vars": "warn",
+      "import/no-unresolved": "error",
+      "jsx-a11y/anchor-is-valid": "warn",
+      "vitest/no-disabled-tests": "warn",
+      "vitest/no-focused-tests": "error",
+      "vitest/prefer-to-have-length": "warn",
+      "vitest/expect-expect": "warn"
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      },
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
+    }
+  }
+  
