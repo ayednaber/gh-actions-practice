@@ -24,11 +24,14 @@ jobs:
                 path: ~/.npm
                 key: npm-deps-${{ hashFiles('**/package-lock.json') }}
             - name: Install dependencies
-              run: npm install
+              run: npm ci
+              working-directory: ./node-api
             - name: Run server
               run: npm start & npx wait-on http://127.0.0.1:$PORT
+              working-directory: ./node-api
             - name: Run tests
               run: npm test
+              working-directory: ./node-api
             - name: Output information
               run: |
                 echo "MONGODB_USERNAME: ${{env.MONGODB_USERNAME}}"
