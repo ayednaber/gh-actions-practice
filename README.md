@@ -199,4 +199,21 @@ We add the `continue-on-error` keyword and set it to be true.
   working-directory: ./practice-react-app
 ```
 
+## Matrix Strategies
+We can run the same workflow against different combinations, such as different node versions and different operating systems.
+
+Specify the combinations in the workflow file:
+
+```yml
+jobs:
+  build:
+      strategy:
+          matrix:
+              node-version: [12, 14, 16]
+              operating-system: [ubuntu-latest, windows-latest] 
+```
+
+Then specify the operating system in the `runs-on` field like so:
+`runs-on: ${{ matrix.operating-system }}`
+
 

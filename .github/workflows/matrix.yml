@@ -1,0 +1,22 @@
+name: Matrix Demo
+on: push
+jobs:
+    build:
+        strategy:
+            matrix:
+                node-version: [12, 14, 16]
+                operating-system: [ubuntu-latest, windows-latest] 
+        runs-on: ${{ matrix.operating-system }} # The job will run once per OS here. Will run for all combinations.
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Install NodeJS
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '14'
+            - name: Install dependencies
+              run: npm install
+              working-directory: ./practice-react-app
+            - name: Build project
+              run: npm run build
+              working-directory: ./practice-react-app
