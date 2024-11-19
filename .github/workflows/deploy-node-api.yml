@@ -9,6 +9,7 @@ env: # This environment variable is shared between all jobs, and on a workflow l
 
 jobs:
     test:
+        environment: testing
         env:
             MONGODB_CLUSTER_ADDRESS: cluster0.abcdef.mongodb.net
             MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}

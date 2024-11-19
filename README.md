@@ -135,3 +135,16 @@ env:
   MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
   MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
 ```
+
+### Adding Environments in GitHub
+We can have different values for our environment variables in GitHub (ex: DEV, QA, PROD), and therefore, we can create these environments from the repository settings.
+
+After I create an environment (I created one called DEV), I can create my own environment variables inside that environment, and then I must specify that environment in the workflow.
+
+```yml
+jobs:
+  test:
+    environment: testing
+```
+
+There are many features for specific environments, for example like QA or PROD, we would want specific reviewers/approvers or some other condition.
