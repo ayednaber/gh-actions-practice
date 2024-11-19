@@ -148,3 +148,26 @@ jobs:
 ```
 
 There are many features for specific environments, for example like QA or PROD, we would want specific reviewers/approvers or some other condition.
+
+## Controlling Workflow & Job Execution
+
+What if one step fails, and we would still want to execute the next step? Or if we want steps to be executed conditionally, etc.
+
+We have one step in our new workflow in `execution-flow.yml` where we upload a test report. We can add a conditional for this to make sure this is only executed only if the `npm run test` fails.
+
+We give an `id` to the previous step, and then reference it using the `steps.id.outcome` like so:
+
+```yml
+- name: Run tests
+  id: run-tests
+  run: npm test
+  working-directory: ./practice-react-app
+- name: Upload test report
+  if: failure() && steps.run-tests.outcome == 'failure'
+  uses: actions/upload-artifact@v3
+  with:
+    name: test-report
+    path: test.json
+```
+
+We also need to add the `failure()` function before checking the outcome of the step because GitHub Actions has the default behavior of not executing any other steps after the code.
