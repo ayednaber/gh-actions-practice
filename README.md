@@ -184,3 +184,19 @@ report:
           echo "Something went wrong"
           echo "${{ github.event_name }}"
 ```
+
+
+### Continue on Error
+This means that when a job fails, we can continue execution of the workflow even if it fails.
+
+We add the `continue-on-error` keyword and set it to be true.
+
+```yml
+- name: Run tests
+  continue-on-error: true
+  id: run-tests
+  run: npm test
+  working-directory: ./practice-react-app
+```
+
+

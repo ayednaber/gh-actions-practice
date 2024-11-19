@@ -1,0 +1,87 @@
+name: Website Deployment - Continue
+on:
+    push:
+        branches:
+            - main
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Cache dependencies
+              uses: actions/cache@v3
+              with:
+                path: ~/.npm
+                key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Install dependencies
+              run: npm install
+              working-directory: ./practice-react-app
+            - name: Lint code
+              run: npm run lint
+              working-directory: ./practice-react-app
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Cache dependencies
+              uses: actions/cache@v3
+              with:
+                path: ~/.npm
+                key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Install dependencies
+              run: npm install
+              working-directory: ./practice-react-app
+            - name: Run tests
+              continue-on-error: true
+              id: run-tests
+              run: npm test
+              working-directory: ./practice-react-app
+            - name: Upload test report
+              uses: actions/upload-artifact@v3
+              with:
+                name: test-report
+                path: test.json
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Cache dependencies
+              uses: actions/cache@v3
+              with:
+                path: ~/.npm
+                key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Install dependencies
+              run: npm install
+              working-directory: ./practice-react-app
+            - name: Build app
+              run: npm run build
+              working-directory: ./practice-react-app
+            - name: Upload build
+              uses: actions/upload-artifact@v3
+              with:
+                name: dist-files
+                path: dist
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get build artifacts
+              uses: actions/download-artifact@v3
+              with:
+                name: dist-files
+            - name: Output contents
+              run: ls
+            - name: Deploy
+              run: echo "Deploying website"
+    report:
+        if: failure()
+        runs-on: ubuntu-latest
+        steps:
+            - name: Output information
+              run: |
+                echo "Something went wrong"
+                echo "${{ github.event_name }}"
+    
