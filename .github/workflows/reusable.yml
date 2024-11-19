@@ -1,0 +1,8 @@
+name: Reusable Deploy
+on: workflow_call # We don't want to run this workflow on every push. But we want it to be called by other workflows.
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Output information
+              run: echo "Deploying & Updating..."

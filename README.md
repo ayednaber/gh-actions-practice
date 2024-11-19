@@ -232,3 +232,26 @@ jobs:
                 - node-version: 12
                   operating-system: windows-latest
 ```
+
+## Reusable Workflows
+
+Create a new `reusable.yml` file:
+
+```yml
+name: Reusable Deploy
+on: workflow_call # We don't want to run this workflow on every push. But we want it to be called by other workflows.
+jobs:
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Output information
+            run: echo "Deploying & Updating..."
+```
+Then, we can call this from any other file:
+
+```yml
+deploy:
+  needs: build
+  uses: ./.github/workflows/reusable.yml
+```
+
