@@ -124,3 +124,14 @@ We want to provide environment variables inside our workflow itself, so as to si
 The way we do that is by adding an `env` keyword in the workflow file, where we can add it on a whole workflow level (shared between all jobs), or we can add it on a job level as well.
 
 Ideally, we do not want to hard-code our values inside the workflow files, and there is a better way (much like Hashicorp Vault).
+
+We add secrets from the repository settings, under Security --> Secrets --> Actions:
+![Actions secrets](img/secrets.png)
+
+Then, we remove the hard-coding of the values, and instead use the secrets context object:
+
+```yml
+env:
+  MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+  MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+```
