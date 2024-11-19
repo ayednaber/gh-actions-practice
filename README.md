@@ -99,3 +99,18 @@ The same way we are uploading, we can also download artifacts
 - name: Output contents
   run: ls
 ```
+
+We want to **cache dependencies** since we do not want to download them for every job.
+
+If dependencies are cached in one job, they can be used in other jobs and workflows.
+But we need to specify the same piece of code in all our jobs.
+
+```yml
+- name: Cache dependencies
+  uses: actions/cache@v3
+  with:
+    path: ~/.npm
+    key: deps-node-modules-${{hashFiles('**/package-lock.json')}}
+```
+
+It is taking much less time now to download the dependencies in other jobs, since it is using the cached dependencies from the first-ran job.
