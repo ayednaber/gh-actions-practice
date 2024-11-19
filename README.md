@@ -114,3 +114,5 @@ But we need to specify the same piece of code in all our jobs.
 ```
 
 It is taking much less time now to download the dependencies in other jobs, since it is using the cached dependencies from the first-ran job.
+
+Since we are using the package lock json file as part of the cache key, if we use `npm update` to update our dependencies, it will no longer use those cached dependencies since they are now outdated.
