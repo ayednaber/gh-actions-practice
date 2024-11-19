@@ -216,4 +216,19 @@ jobs:
 Then specify the operating system in the `runs-on` field like so:
 `runs-on: ${{ matrix.operating-system }}`
 
+If we want to use node version 18 only with ubuntu-latest, and not run it for windows, we can use the `include` keyword like so. We can also use `exclude`.
 
+```yml
+jobs:
+  build:
+      strategy:
+          matrix:
+              node-version: [12, 14, 16]
+              operating-system: [ubuntu-latest, windows-latest] 
+              include:
+                - node-version: 18
+                  operating-system: ubuntu-latest
+              exclude:
+                - node-version: 12
+                  operating-system: windows-latest
+```
