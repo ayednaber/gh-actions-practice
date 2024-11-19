@@ -171,3 +171,16 @@ We give an `id` to the previous step, and then reference it using the `steps.id.
 ```
 
 We also need to add the `failure()` function before checking the outcome of the step because GitHub Actions has the default behavior of not executing any other steps after the code.
+
+We can run a separate job when any of our jobs fail, and we can do that by just specifying `failure()` in the `if` field like so:
+
+```yml
+report:
+  if: failure()
+  runs-on: ubuntu-latest
+  steps:
+      - name: Output information
+        run: |
+          echo "Something went wrong"
+          echo "${{ github.event_name }}"
+```
