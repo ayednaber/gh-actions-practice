@@ -255,3 +255,16 @@ deploy:
   uses: ./.github/workflows/reusable.yml
 ```
 
+## Custom Actions
+
+Three main types: \\
+1. JavaScript Actions: writing the logic in a JS file that should be executed whenever the job is run.
+
+2. Docker Actions: Creating a dockerfile with the required configuration, then use any language we want, since it is defined in our own container.
+
+3. Composite Actions: No code is written, combining multiple workflow steps (`run` and `uses` steps together). No extra knowledge is needed for this.
+
+The composite action is added under `.github/actions/cached-deps` and then an `action.yml` file is created there. Only this file is needed for composite.
+
+
+
