@@ -26,9 +26,12 @@ jobs:
         with:
           node-version: 18
       - name: Load & cache dependencies
+        id: cache-deps
         uses: ./.github/actions/cached-deps
         with:
           caching: 'false'
+      - name: Output information
+        run: echo "Cache used ${{ steps.cache-deps.outputs.used-cache }}"
       - name: Build project
         run: npm run build
         working-directory: ./second-app-react
