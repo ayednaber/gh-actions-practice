@@ -25,9 +25,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install dependecies
-        run: npm install
-        working-directory: ./second-app-react
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
+        with:
+          caching: 'false'
       - name: Build project
         run: npm run build
         working-directory: ./second-app-react

@@ -266,5 +266,5 @@ Three main types: \\
 
 The composite action is added under `.github/actions/cached-deps` and then an `action.yml` file is created there. Only this file is needed for composite.
 
-
+This allows us to clean up our workflow files, and get things done more efficiently.
 
